@@ -1,0 +1,24 @@
+{
+    "categories": [
+        {
+            "name": "work",
+            "labelColor": "danger"
+        },
+        {
+            "name": "personal",
+            "labelColor": "secondary"
+        },
+        {
+            "name": "school",
+            "labelColor": "warning"
+        },
+        {
+            "name": "kategoria A",
+            "labelColor": "success"
+        },
+        {
+            "name": "kategoria B",
+            "labelColor": "tertiary"
+        }
+    ]
+}
