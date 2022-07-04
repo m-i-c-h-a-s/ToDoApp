@@ -17,9 +17,15 @@ export class HomePage {
   categories: TaskCategory[] = categoriesData.categories
   toDoList = []
 
-  constructor(public modalController: ModalController) { }
+  constructor(
+    public modalController: ModalController,
+    private databaseService: DatabaseService
+  ) {
+    this.loadData()
+  }
 
-  ngOnInit() {
+  async loadData() {
+    this.toDoList = await this.databaseService.getTasks()
   }
 
   async addTask() {
@@ -27,14 +33,26 @@ export class HomePage {
       component: AddNewTaskPage
     })
 
+    modal.onDidDismiss().then(data => {
+      this.loadData()
+    })
     return await modal.present()
   }
 
-  async updateTask() {
+  async updateTask(index, oldTask) {
     const modal = await this.modalController.create({
-      component: UpdateTaskPage
+      component: UpdateTaskPage,
+      componentProps: {index: index, oldTask: oldTask}
     })
 
+    modal.onDidDismiss().then(data => {
+      this.loadData()
+    })
     return await modal.present()
+  }
+
+  async deleteTask(index) {
+    this.databaseService.deleteTask(index)
+    this.toDoList.splice(index, 1)
   }
 }
