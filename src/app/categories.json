@@ -11,14 +11,6 @@
         {
             "name": "school",
             "labelColor": "warning"
-        },
-        {
-            "name": "kategoria A",
-            "labelColor": "success"
-        },
-        {
-            "name": "kategoria B",
-            "labelColor": "tertiary"
         }
     ]
 }

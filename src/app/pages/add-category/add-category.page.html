@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add New Category</ion-title>
+    <ion-icon name="close" slot="end" size="large" class="ion-padding" (click)="dismiss(false)"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-textarea
+        [(ngModel)]="category.name"
+        placeholder="Type your category name..."></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-text color="{{category.labelColor}}">
+        Select label color:
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <p class="ion-text-center">
+        <ion-button *ngFor="let color of colors; let i = index"
+                    (click)="selectLabelColor(i)"
+                    shape="round" fill="clear" color="{{color}}"
+                    class="ion-margin"
+        >
+          <ion-icon name="ellipse" size="large"color="{{ color }}"></ion-icon>
+        </ion-button>
+      </p>
+    </ion-item>
+  </ion-card>
+
+  <ion-button color="danger" expand="block" class="ion-margin" (click)="addCategory()">
+    <ion-icon slot="start" name="add"></ion-icon>
+    Add
+  </ion-button>
+</ion-content>

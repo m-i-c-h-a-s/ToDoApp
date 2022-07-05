@@ -3,7 +3,6 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { Task } from 'src/app/interfaces/task';
 import { TaskCategory } from 'src/app/interfaces/taskCategory';
 import { DatabaseService } from 'src/app/services/database.service';
-import categoriesData from '../../categories.json';
 
 @Component({
   selector: 'app-add-new-task',
@@ -12,26 +11,30 @@ import categoriesData from '../../categories.json';
 })
 export class AddNewTaskPage implements OnInit {
 
-  categories: TaskCategory[] = categoriesData.categories
+  categories: TaskCategory[]
   task: Task
 
   constructor(public modalController: ModalController,
               public toastController: ToastController,
               public databaseService: DatabaseService
-    ) {
+  ) {
     this.task = {
       name: '',
       category: '',
       deadline: '',
       priority: '',
     }
+    this.loadCategories()
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  async loadCategories() {
+    this.categories = await this.databaseService.getCategories()
   }
 
-  async dismiss() {
-    await this.modalController.dismiss()
+  async dismiss(isTaskAdded: boolean) {
+    await this.modalController.dismiss(isTaskAdded)
   }
 
   selectCategory(selectedIndex: number) {
@@ -48,9 +51,8 @@ export class AddNewTaskPage implements OnInit {
     else if (!this.task.category)
       this.showToast("Select category!", 2000)
     else {
-      console.log(this.task)
       this.databaseService.addTask(this.task)
-      this.dismiss()
+      this.dismiss(true)
     }
   }
 

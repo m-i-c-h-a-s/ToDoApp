@@ -3,8 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AddNewTaskPage } from '../add-new-task/add-new-task.page';
 import { UpdateTaskPage } from '../update-task/update-task.page';
-import { TaskCategory } from '../../interfaces/taskCategory';
-import categoriesData from '../../categories.json';
+import { Router } from '@angular/router';
+import { Task } from 'src/app/interfaces/task';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +14,11 @@ import categoriesData from '../../categories.json';
 export class HomePage {
 
   today: number = Date.now()
-  categories: TaskCategory[] = categoriesData.categories
   toDoList = []
 
-  constructor(
-    public modalController: ModalController,
-    private databaseService: DatabaseService
+  constructor(public modalController: ModalController,
+              private databaseService: DatabaseService,
+              public router: Router
   ) {
     this.loadData()
   }
@@ -34,24 +33,26 @@ export class HomePage {
     })
 
     modal.onDidDismiss().then(data => {
-      this.loadData()
+      if (data.data)
+        this.loadData()
     })
     return await modal.present()
   }
 
-  async updateTask(index, oldTask) {
+  async updateTask(index: number, oldTask: Task) {
     const modal = await this.modalController.create({
       component: UpdateTaskPage,
       componentProps: {index: index, oldTask: oldTask}
     })
 
     modal.onDidDismiss().then(data => {
-      this.loadData()
+      if (data.data)
+        this.loadData()
     })
     return await modal.present()
   }
 
-  async deleteTask(index) {
+  async deleteTask(index: number) {
     this.databaseService.deleteTask(index)
     this.toDoList.splice(index, 1)
   }

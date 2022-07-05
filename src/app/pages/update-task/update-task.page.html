@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Update Task</ion-title>
-    <ion-icon name="close" slot="end" size="large" class="ion-padding" (click)="dismiss()"></ion-icon>
+    <ion-icon name="close" slot="end" size="large" class="ion-padding" (click)="dismiss(false)"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +24,7 @@
 
     <ion-item>
       <ion-icon name="calendar-outline" slot="start"></ion-icon>
-      <ion-label>Due date</ion-label>
+      <ion-label>Deadline</ion-label>
       <ion-datetime [(ngModel)]="task.deadline"></ion-datetime>
     </ion-item>
 
