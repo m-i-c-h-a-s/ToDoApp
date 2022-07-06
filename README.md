@@ -1,7 +1,6 @@
 # ToDoApp
 
 ## Table of contents
-#
 
 * [General info](#general-info)
 * [Presentation of the application](#presentation-of-the-application)
@@ -9,14 +8,12 @@
 * [Setup](#setup)
 
 ## General info
-#
 
 This is a TODO application created using Ionic with the Angular framework.
 
 The application allows you to add and edit tasks, assign them to categories, as well as create and manage your own categories. When creating a task, you can choose its priority, category and deadline.
 
 ## Presentation of the application
-#
 
 <h3>
   <p align="center">Tasks list. Editing and deleting function.</p>
@@ -41,7 +38,7 @@ The application allows you to add and edit tasks, assign them to categories, as 
 
 
 ## Technologies
-#
+
 Project is created with:
 
 * Node.js v16.14.0
@@ -50,7 +47,7 @@ Project is created with:
 * Angular CLI: 13.2.4
 
 ## Setup
-#
+
 To launch this project in a web browser, run the following commands:
 
 `npm install`
