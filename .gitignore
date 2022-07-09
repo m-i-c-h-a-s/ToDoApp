@@ -106,3 +106,7 @@ dist
 .angular
 www
 android
+ios
+
+resources/android
+resources/ios
